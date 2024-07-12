@@ -48,7 +48,7 @@ function Header() {
         <button  onClick={()=>router.push('/')} className='text-white bg-black p-3 px-4 rounded-full hidden md:block '>
              Home
         </button>
-        <button className='p-3 px-4 rounded-full hidden md:block font-semibold'>
+        <button onClick={()=>router.push('/pin-builder')} className='p-3 px-4 rounded-full hidden md:block font-semibold'>
         Create
         </button>
 
@@ -66,7 +66,7 @@ function Header() {
          width={50} height={50} alt='user-img' 
          className='hover:bg-gray-300 p-2 rounded-full curser-pointer'/>  
           :
-        <button className='p-3 px-4 rounded-full hidden md:block font-semibold' onClick={ ()=> signIn() }>
+        <button className='p-3 px-4 rounded-full cursor-pointer hidden md:block font-semibold' onClick={ ()=> signIn() }>
           Login
         </button>}
 
