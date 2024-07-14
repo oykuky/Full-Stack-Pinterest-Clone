@@ -40,15 +40,23 @@ function Header() {
   };
    
   const router = useRouter();
+  const onCreateClick =()=>{
+    if(session){
+      router.push('pin-builder');
+    }
+    else{
+      signIn();
+    }
+  }
 
   return (
     <div className='flex justify-between gap-3 md:gap-2 items-center p-6 '>
-        <Image src='/logo.png' alt="logo" width={50} height={50}
+        <Image src='/logo.png' alt="logo" width={50} height={50} onClick={()=>router.push('/')}
          className='hover:bg-gray-300 p-3 rounded-full curser-pointer'/>
         <button  onClick={()=>router.push('/')} className='text-white bg-black p-3 px-4 rounded-full hidden md:block '>
              Home
         </button>
-        <button onClick={()=>router.push('/pin-builder')} className='p-3 px-4 rounded-full hidden md:block font-semibold'>
+        <button onClick={()=>onCreateClick()} className='p-3 px-4 rounded-full hidden md:block font-semibold'>
         Create
         </button>
 

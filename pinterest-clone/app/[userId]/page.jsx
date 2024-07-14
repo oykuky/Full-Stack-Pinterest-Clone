@@ -1,12 +1,14 @@
 "use client"
-import { getFirestore,doc,getDoc } from 'firebase/firestore'
+import { collection, getDocs,getDoc,doc, getFirestore, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import app from '../Shared/firebaseConfig';
 import UserInfo from '../components/UserInfo';
+import PinList from './../components/Pins/PinList'
 
 function Profile({params}) {
   const db= getFirestore(app);
   const [userInfo,setUserInfo]=useState();
+  const [listOfPins,setListOfPins]=useState([]);
 
   useEffect(() => {
     console.log(params.userId.replace('%40','@'))
@@ -14,6 +16,7 @@ function Profile({params}) {
       getUserInfo(params.userId.replace('%40','@'))
     }
   }, [params])
+
 
   const getUserInfo=async(email)=>{
     const docRef = doc(db, "user",email );
@@ -25,11 +28,32 @@ function Profile({params}) {
       console.log("No such document!");
     }
   }
+
+  useEffect(()=>{
+     if(userInfo){
+       getUserPins();
+     }
+  },[userInfo])
+
+  const getUserPins=async()=>{
+     setListOfPins([])
+      const q=query(collection(db,'pinterest-post')
+      ,where("email",'==',userInfo.email));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+      setListOfPins(listOfPins=>[...listOfPins,doc.data()]);
+      });
+  }
+
   return (
     <div>
-      {userInfo?    
-      <UserInfo userInfo={userInfo}/>
-        : null }
+     {userInfo?
+      <div>
+        <UserInfo userInfo={userInfo} />
+        <PinList listOfPins={listOfPins}  />
+      </div> 
+      :null}
     </div>
   )
 }
