@@ -7,7 +7,9 @@
 
 
  
-![pinterest]()
+![pinterest](https://github.com/user-attachments/assets/fba84f8b-ce87-4124-95f6-f34fbca458fc)
+![pinterest create page](https://github.com/user-attachments/assets/b98a8f40-27de-4537-9d3d-b09021013a44)
+
 
 
   ### Features:
@@ -44,5 +46,5 @@ GOOGLE_CLIENT_SECRET=
 ```js
 
 
-</div>
+
 
