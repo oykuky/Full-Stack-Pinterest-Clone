@@ -2,7 +2,7 @@
 
 <div style="text-align: center;"> 
  
-## :star: Building a Fullstack Pinterest Clone with React, NextJS, TailwindCSS & 
+## :star: Building a Fullstack Pinterest Clone with React, NextJS, TailwindCSS & Firebase
  
 
 
