@@ -4,15 +4,19 @@ import PinImage from './../../components/PinDetail/PinImage'
 import PinInfo from './../../components/PinDetail/PinInfo'
 import { doc, getDoc, getFirestore } from 'firebase/firestore'
 import app from '@/app/Shared/firebaseConfig'
-import { HiArrowSmallLeft } from "react-icons/hi2";
 import { useRouter } from 'next/navigation'
+import { HiArrowSmallLeft } from "react-icons/hi2";
+
 function PinDetail({params}) {
+
   const router=useRouter();
   const db=getFirestore(app);
   const [pinDetail,setPinDetail]=useState([]);
+
   useEffect(()=>{
     getPinDetail();
   },[])
+  
  const getPinDetail=async()=>{
       const docRef = doc(db, 'pinterest-post',params.pinId );
       const docSnap = await getDoc(docRef);
@@ -34,14 +38,13 @@ function PinDetail({params}) {
       <div className='grid grid-cols-1 lg:grid-cols-2 md:gap-10 shadow-lg
       rounded-2xl p-3 md:p-7 lg:p-12 xl:pd-16 ' 
       >
-     
         <PinImage pinDetail={pinDetail} />
-        <div className="">
-        <PinInfo pinDetail={pinDetail}/>
+        <div >
+         <PinInfo pinDetail={pinDetail}/>
         </div>
-        </div>
+       </div>
     </div>:null}
-    </>
+    </> 
   )
 }
 
